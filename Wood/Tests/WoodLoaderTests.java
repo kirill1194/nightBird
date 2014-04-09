@@ -73,7 +73,7 @@ public class WoodLoaderTests{
 			e.printStackTrace();
 		}
 		try {
-			testWood.createWoodman("Player", new Point (1, 1));
+			testWood.createWoodman("Player", new Point (1, 1), new Point (0,0));
 		} catch (UnexceptableNameException e) {
 			fail("UnexceptableNameException");
 			e.printStackTrace();
@@ -107,7 +107,7 @@ public class WoodLoaderTests{
 	@Test
 	public void testLoad() throws EmptyFileException, InvalidFileException {
 		try {
-			myWood.createWoodman("Player1", new Point(1, 1));
+			myWood.createWoodman("Player1", new Point(1, 1), new Point(0, 0));
 			assertEquals(Action.Life, myWood.move("Player1", Direction.Down));
 			assertEquals(Action.Dead, myWood.move("Player1", Direction.Right));
 			assertEquals(Action.Ok, myWood.move("Player1", Direction.Up)); //1 жизнь

@@ -48,7 +48,7 @@ public class PrintableWood extends Wood {
 		super(wood);
 		m_wood=wood;
 		m_freeSymbolsOfPlayers =  new HashSet<>();
-		m_freeSymbolsOfPlayers.addAll(Arrays.asList('@','♗','♖','♣','★','✖','♘','♔','♊','♆','♀','⌘','Ω','Ѱ'));
+		m_freeSymbolsOfPlayers.addAll(Arrays.asList('@','♗','♖','♣','★','✖','♘','♔','♆','♀','⌘','Ω','Ѱ'));
 		m_players = new HashMap<>(m_freeSymbolsOfPlayers.size());
 		m_oStream = oStream;
 		m_WoodForPrint = new char[wood.length][wood[0].length];
@@ -130,12 +130,12 @@ public class PrintableWood extends Wood {
 	}
 
 	@Override
-	public void createWoodman(String name, Point start) throws UnexceptableNameException {
+	public void createWoodman(String name, Point start, Point finish) throws UnexceptableNameException {
 		Iterator<Character> itr = m_freeSymbolsOfPlayers.iterator();
 		if (!itr.hasNext()) {
 			throw new RuntimeException("Превышено максимальное количество игроков");
 		}
-		super.createWoodman(name, start);
+		super.createWoodman(name, start, finish);
 		Character symbol = itr.next();
 		m_freeSymbolsOfPlayers.remove(symbol);
 		m_players.put(name, symbol);

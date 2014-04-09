@@ -44,11 +44,17 @@ public class WoodLoader implements Interfaces.WoodLoaderInterface {
 	}
 	@Override
 	public WoodInterface Load(InputStream stream) throws EmptyFileException, InvalidFileException{
+		return new Wood(intermediateLoad(stream));
+	}
+	public PrintableWood printableLoader(InputStream iStream, OutputStream oStream) throws EmptyFileException, InvalidFileException {
+		return new PrintableWood(intermediateLoad(iStream), oStream);
+	}
+	private char[][] intermediateLoad(InputStream stream) throws EmptyFileException, InvalidFileException {
 		try{
 			BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
 			try {
 				//читаем из файла и создаем объект Wood
-				return new Wood(readArray(reader)); 
+				return readArray(reader); 
 			} finally {
 				reader.close();
 			}
@@ -64,7 +70,7 @@ public class WoodLoader implements Interfaces.WoodLoaderInterface {
 		//хотя сюда он никогда не дойдет: либо обвалится с исключением, либо сработает return
 		return null;
 	}
-
+	
 	private char[][] readArray(BufferedReader reader) throws IOException, InvalidFileException {
 		String newLine = reader.readLine();
 		if (newLine == null)

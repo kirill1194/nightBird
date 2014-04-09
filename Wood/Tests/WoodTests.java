@@ -47,27 +47,27 @@ public class WoodTests {
 
 	@Test(expected = UnexceptableNameException.class)
 	public void testUnexceptableNameException() throws UnexceptableNameException {
-		myWood.createWoodman("Player", new Point(1, 1));
-		myWood.createWoodman("Player", new Point(2, 1));
+		myWood.createWoodman("Player", new Point(1, 1), new Point(0,0));
+		myWood.createWoodman("Player", new Point(2, 1), new Point(0,0));
 	}
 	
 	
 	@Test
 	public void testOK() throws UnexceptableNameException {
-		myWood.createWoodman("Player1", new Point(1, 1));
+		myWood.createWoodman("Player1", new Point(1, 1), new Point(0,0));
 		assertEquals(Action.Ok, myWood.move("Player1", Direction.Right));
 	}
 
 	@Test
 	public void testFail() throws UnexceptableNameException {
-		myWood.createWoodman("Player1", new Point(1, 1));
+		myWood.createWoodman("Player1", new Point(1, 1), new Point(0,0));
 		assertEquals(Action.Fail, myWood.move("Player1", Direction.Up));
 	}
 	
 	//Проверка случая, когда игрок стоит на капкане и пытается перейти в стену
 	@Test
 	public void testFailAndDead() throws UnexceptableNameException {
-		myWood.createWoodman("Player", new Point(2,1));
+		myWood.createWoodman("Player", new Point(2,1), new Point(0,0));
 		assertEquals(Action.Dead, myWood.move("Player", Direction.Down));//2 жизни
 		assertEquals(Action.Fail, myWood.move("Player", Direction.Down));//1 жизнь
 		assertEquals(Action.Fail, myWood.move("Player", Direction.Down));//0 жизней
@@ -78,7 +78,7 @@ public class WoodTests {
 	@Test
 	public void testWoodmanNotFound() throws EmptyFileException, InvalidFileException {
 		try {
-			myWood.createWoodman("Player1", new Point(1, 1));
+			myWood.createWoodman("Player1", new Point(1, 1), new Point(0,0));
 			assertEquals(myWood.move("Player1", Direction.Right), Action.Ok);
 			assertEquals(Action.Dead, myWood.move("Player1", Direction.Down)); //2 жизни
 			assertEquals(Action.Ok, myWood.move("Player1", Direction.Up));
@@ -101,7 +101,7 @@ public class WoodTests {
 	@Test
 	public void testLife() {
 		try {
-			myWood.createWoodman("Player", new Point(1,1));
+			myWood.createWoodman("Player", new Point(1,1), new Point(0,0));
 			assertEquals(Action.Life, myWood.move("Player", Direction.Down));
 		} catch (UnexceptableNameException e) {
 			fail("UnexceptableNameException");

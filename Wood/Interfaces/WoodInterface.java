@@ -15,7 +15,7 @@ public interface WoodInterface {
 	 * @param name имя лесного жителя
 	 * @param start место появления
 	 */
-	void createWoodman(String name, Point start) throws UnexceptableNameException;
+	void createWoodman(String name, Point start, Point finish) throws UnexceptableNameException;
 	
 	/**
 	 * Перемещает лесного жителя.

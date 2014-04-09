@@ -11,6 +11,7 @@ import Interfaces.WoodmanInterface;
 
 public class Wood implements WoodInterface {
 	private char[][] m_wood;
+	private Point m_finish;
 	private Map <String, WoodmanInterface> m_woodmans;
 	
 	public Wood (char [][] wood) {
@@ -20,13 +21,14 @@ public class Wood implements WoodInterface {
 		m_woodmans = new HashMap<>();
 	}
 	@Override
-	public void createWoodman(String name, Point start) throws UnexceptableNameException {
+	public void createWoodman(String name, Point start, Point finish) throws UnexceptableNameException {
 		if (m_wood[start.getX()][start.getY()] == '1')
 			throw new RuntimeException("Невозможно создать игрока в клетке " + start.toString() + ". в этой клетке стена");
 //		Проверка на уникальность имени
 		if (m_woodmans.containsKey(name))
 			throw new UnexceptableNameException(name);		
 		m_woodmans.put(name, new Woodman(start, name));
+		m_finish = finish;
 	}
 
 	protected Point getLocation(String name) {
@@ -78,6 +80,8 @@ public class Wood implements WoodInterface {
 				return null;
 			
 		}
+		if (location.equals(m_finish))
+			return Action.Finish;
 		int x = location.getX();
 		int y = location.getY();
 		if ( (x<0) || (x>m_wood.length) )
