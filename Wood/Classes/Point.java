@@ -33,6 +33,17 @@ public class Point {
 	public Point MoveRigth() {
 		return new Point(x + 1, y);
 	}
+	
+	public Point sub(Point p) {
+		return new Point(x-p.x, y - p.y);
+	}
+	
+	public Point add(Point p) {
+		return new Point(x+p.x, y+p.y);
+	}
+	public Point revers() {
+		return new Point(-x,-y);
+	}
 	@Override
 	public String toString() {
 		return "("+x+";"+y+")";

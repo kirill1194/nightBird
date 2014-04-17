@@ -61,22 +61,25 @@ public class Wood implements WoodInterface {
 			case Left:
 				location = location.MoveLeft();
 				break;
-			case None:
-				if (m_wood[location.getX()][location.getY()] == 'K') {
-					if (carecter.Kill())
-						return Action.Dead;
-					else
-					{
-						m_woodmans.remove(name);
-						return Action.WoodmanNotFound;
-					}
+		}
+		if (location.equals(m_finish))
+			return Action.Finish;
+		if (direction.equals(Direction.None)) {
+			if (m_wood[location.getX()][location.getY()] == 'K') {
+				if (carecter.Kill())
+					return Action.Dead;
+				else
+				{
+					m_woodmans.remove(name);
+					return Action.WoodmanNotFound;
 				}
-				if (m_wood[location.getX()][location.getY()] == 'L') {
-					carecter.AddLife();				
-					return Action.Life;
-				}
-				if (m_wood[location.getX()][location.getY()] == '0')
-					return Action.Ok;
+			}
+			if (m_wood[location.getX()][location.getY()] == 'L') {
+				carecter.AddLife();				
+				return Action.Life;
+			}
+			if (m_wood[location.getX()][location.getY()] == '0')
+				return Action.Ok;
 				return null;
 			
 		}

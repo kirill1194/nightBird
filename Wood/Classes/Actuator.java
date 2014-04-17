@@ -23,12 +23,13 @@ public class Actuator {
 		Scanner scanner = new Scanner(System.in);
 		String name = null;
 		try {
+			System.out.println("введите имя игрока: ");
 			name = scanner.nextLine();
 			int xS, yS;
-			System.out.println("Координаты старта: ");
+			System.out.println("Координаты старта: (в моей карте это 1 1)");
 			xS = scanner.nextInt();
 			yS = scanner.nextInt();
-			System.out.println("Координаты финиша: ");
+			System.out.println("Координаты финиша: (в моей карте это 1 10)");
 			int xF, yF;
 			xF = scanner.nextInt();
 			yF = scanner.nextInt();
